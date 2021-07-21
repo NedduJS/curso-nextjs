@@ -7,12 +7,6 @@ const index = ({ children }) => {
     <div className='container'>
       <Navbar />
       {children}
-
-      <style jsx>{`
-        .container{
-          background: salmon;
-        }
-      `}</style>
     </div>
   );
 };
