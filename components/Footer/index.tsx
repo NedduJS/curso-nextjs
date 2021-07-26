@@ -35,6 +35,7 @@ const Footer = () => {
             </a>{' '}
             de Platzi
           </p>
+          <div></div>
         </section>
       </div>
       <div>

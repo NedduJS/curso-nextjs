@@ -1,14 +1,16 @@
-import React from 'react'
-import { useRouter} from 'next/router'
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const ProductItem = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const product = router.query.id;
 
   return (
     <div>
-      Esta es la página del producto: {router.query.id}
+      <div></div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductItem
+export default ProductItem;
