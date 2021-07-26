@@ -1,12 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-const AvoItem = ({ image, name, price }) => {
+const AvoItem = ({ id, image, name, price }) => {
   return (
     <div className=''>
-      <Image src={image} width='300' height='300' />
-      <p>{name}</p>
-      <p>{price}</p>
+      <Link href={`/product/${id}`}>
+        <a>
+          <Image src={image} width='300' height='300' />
+          <p>{name}</p>
+          <p>{price}</p>
+        </a>
+      </Link>
     </div>
   );
 };

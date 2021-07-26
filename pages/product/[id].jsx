@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { connect } from 'react-redux';
 
-const ProductItem = () => {
+const ProductItem = ({ avoList }) => {
   const router = useRouter();
-  const product = router.query.id;
+  const productID = router.query.id;
+  const newProduct = avoList.find((item) => item.id === productID);
 
   return (
     <div>
-      <div></div>
+      <div>
+        <Image src={newProduct.image} width='300' height='300' />
+      </div>
     </div>
   );
 };
 
-export default ProductItem;
+const mapStateToProps = ({ avo }) => {
+  return {
+    avoList: avo.avoList,
+  };
+};
+
+export default connect(mapStateToProps, null)(ProductItem);
