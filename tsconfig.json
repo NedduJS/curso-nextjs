@@ -6,7 +6,8 @@
         "database/db.ts"
       ],
       "@components/*":["components/*"],
-      "@images/*":["public/images/*"]
+      "@images/*":["public/images/*"],
+      "@store/*":["redux/*"],
     },
     "target": "es5",
     "lib": [

@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import avoReducers from './avo/avoReducers';
+import cartReducers from './cart/cartReducer';
 
 import { getAvo } from './avo/avoActions';
 
 const rootReducer = combineReducers({
   avo: avoReducers,
+  cart: cartReducers,
 });
 
 const generateStore = () => {
