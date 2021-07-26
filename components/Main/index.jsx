@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import AvoItem from '@components/AvoItem';
 
-const Main = () => {
-  const [ProductList, setProductList] = useState([]);
-
-  useEffect(async () => {
-    const response = await fetch('/api/avo');
-    const { data } = await response.json();
-    setProductList(data);
-  }, []);
-
+const Main = ({ avoList }) => {
   return (
     <main>
       <div>
@@ -56,7 +49,7 @@ const Main = () => {
         </p>
       </div>
       <div>
-        {ProductList.map((item) => {
+        {avoList.map((item) => {
           return <AvoItem key={item.id} {...item} />;
         })}
       </div>
@@ -64,4 +57,10 @@ const Main = () => {
   );
 };
 
-export default Main;
+const mapStateToProps = ({ avo }) => {
+  return {
+    avoList: avo.avoList,
+  };
+};
+
+export default connect(mapStateToProps, null)(Main);
