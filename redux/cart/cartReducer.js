@@ -10,7 +10,6 @@ const reducer = (state = initialState, action) => {
         const reduced = action.payload.reduce((r, a) => {
           return r + a.quantity;
         }, 0);
-        console.log(reduced);
         count = reduced;
       } else {
         count = action.payload[0].quantity;
@@ -21,11 +20,10 @@ const reducer = (state = initialState, action) => {
         nItems: count,
       };
     case REMOVE_FROM_CART:
-      if (action.payload.length > 1) {
+      if (action.payload.length >= 1) {
         const reduced = action.payload.reduce((r, a) => {
           return r + a.quantity;
         }, 0);
-        console.log(reduced);
         count = reduced;
       } else {
         count = 0;

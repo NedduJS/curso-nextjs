@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 
 import AvoItem from '@components/AvoItem';
 
+import styles from './Main.module.css';
+
 const Main = ({ avoList }) => {
   return (
     <main>
       <div>
-        <p>
+        <p className={styles.title}>
           Platzi{' '}
-          <svg width='34px' height='34px' viewBox='-99 0 511 512'>
+          <svg width='60px' height='60px' viewBox='-99 0 511 512'>
             <path
               d='M187.8 38.09c-20.324 20.32-27.742 48.996-30.41 69.043-1.723 12.91 9.266 23.895 22.176 22.176 20.047-2.672 48.719-10.09 69.043-30.41 20.32-20.324 27.742-48.996 30.41-69.047 1.719-12.906-9.266-23.895-22.176-22.176-20.047 2.672-48.723 10.09-69.043 30.414z'
               fill='#8ee2cf'></path>
@@ -48,7 +50,7 @@ const Main = ({ avoList }) => {
           Avo
         </p>
       </div>
-      <div>
+      <div className={styles.listItems}>
         {avoList.map((item) => {
           return <AvoItem key={item.id} {...item} />;
         })}

@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import Layout from '@components/Layout';
 import generateStore from '../redux/store';
 
+import '../global.css';
+
 const store = generateStore();
 
 function MyApp({ Component, pageProps }) {

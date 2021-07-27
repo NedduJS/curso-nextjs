@@ -1,0 +1,17 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.listItems {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 740px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

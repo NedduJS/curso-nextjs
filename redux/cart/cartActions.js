@@ -30,8 +30,12 @@ const removeFromCart = (itemId) => (dispatch, getState) => {
 
   const itemIndex = cartList.findIndex((item) => item.id === itemId);
   let newQuantity;
-  if (cartList[itemIndex].quantity) {
-    newQuantity = cartList[itemIndex].quantity - 1;
+  newQuantity = cartList[itemIndex].quantity - 1;
+  if (cartList.length === 1 && newQuantity === 0) {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      payload: [],
+    });
   }
 
   if (newQuantity === 0) {

@@ -6,10 +6,32 @@ import { UilShoppingCartAlt } from '@iconscout/react-unicons';
 
 import { addToCart } from '@store/cart/cartActions';
 
-const ProductItem = ({ avoList, addToCart }) => {
+export const getStaticPaths = async () => {
+  const response = await fetch('https://platzi-avo.vercel.app/api/avo');
+  const { data }: TAPIAvoResponse = await response.json();
+
+  const paths = data.map(({ id }) => ({ params: { id } }));
+
+  return {
+    // Statically generate all paths
+    paths,
+    // Display 404 for everything else
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async ({ params }) => {
+  const response = await fetch(
+    `https://platzi-avo.vercel.app/api/avo/${params?.id}`
+  );
+  const product = await response.json();
+
+  return { props: { product } };
+};
+
+const ProductItem = ({ addToCart, product }) => {
   const router = useRouter();
   const productID = router.query.id;
-  const newProduct = avoList.find((item) => item.id === productID);
 
   const [quantity, setQuantity] = useState(0);
 
@@ -20,18 +42,18 @@ const ProductItem = ({ avoList, addToCart }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addToCart({ ...newProduct, quantity });
+    addToCart({ ...product, quantity });
   };
 
   return (
     <div>
       <div>
-        <Image src={newProduct.image} width='300' height='300' />
+        <Image src={product.image} width='300' height='300' />
         <div>
           <div>
-            <p>{newProduct.name}</p>
-            <p>{newProduct.price}</p>
-            <p>{newProduct.sku}</p>
+            <p>{product.name}</p>
+            <p>{product.price}</p>
+            <p>{product.sku}</p>
           </div>
           <form action='' onSubmit={handleSubmit}>
             <input
@@ -49,7 +71,7 @@ const ProductItem = ({ avoList, addToCart }) => {
         </div>
       </div>
       <h2>About this avocado</h2>
-      <p>{newProduct.attributes.description}</p>
+      <p>{product.attributes.description}</p>
       <table>
         <thead>
           <th>Attributes</th>
@@ -57,15 +79,15 @@ const ProductItem = ({ avoList, addToCart }) => {
         <tbody>
           <tr>
             <td>Shape</td>
-            <td>{newProduct.attributes.shape}</td>
+            <td>{product.attributes.shape}</td>
           </tr>
           <tr>
             <td>Hardiness</td>
-            <td>{newProduct.attributes.hardiness}</td>
+            <td>{product.attributes.hardiness}</td>
           </tr>
           <tr>
             <td>Taste</td>
-            <td>{newProduct.attributes.taste}</td>
+            <td>{product.attributes.taste}</td>
           </tr>
         </tbody>
       </table>
