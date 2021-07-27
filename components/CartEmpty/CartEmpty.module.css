@@ -1,0 +1,7 @@
+.CartEmpty {
+  padding: 0.5rem 1rem;
+  box-shadow: inset 0 0 0 1px #c9ba9b, 0 0 0 0 transparent;
+  background-color: #fffaf3;
+  color: #573a08;
+  border-radius: 1rem;
+}

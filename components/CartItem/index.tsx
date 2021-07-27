@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import useWindowSize from '../../utils/useWindowSize';
 import { removeFromCart } from '@store/cart/cartActions';
 
+import styles from './CartItem.module.css';
+
 const CartItem = ({ id, name, quantity, price, image, removeFromCart }) => {
   const { width } = useWindowSize();
 
@@ -13,19 +15,19 @@ const CartItem = ({ id, name, quantity, price, image, removeFromCart }) => {
   };
 
   return (
-    <div>
+    <div className={styles.CartItem}>
       <Image
         src={image}
         width={width > 500 ? '150' : '300'}
         height={width > 500 ? '150' : '300'}
       />
-      <div>
-        <h2>{name}</h2>
-        <p>
+      <div className={styles.ProductInfo}>
+        <h2 className={styles.name}>{name}</h2>
+        <p className={styles.quantity}>
           {quantity} x {price}
         </p>
         <p>Some more information goes here....</p>
-        <button onClick={handleClick}>
+        <button onClick={handleClick} className={styles.removeBtn}>
           <b>x</b>
         </button>
       </div>
