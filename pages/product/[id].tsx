@@ -6,7 +6,9 @@ export const getStaticPaths = async () => {
   const response = await fetch('https://platzi-avo.vercel.app/api/avo');
   const { data }: TAPIAvoResponse = await response.json();
 
-  const paths = data.map(({ id }) => ({ params: { id } }));
+  const paths = data.map(({ id }) => ({
+    params: { id },
+  }));
 
   return {
     paths,
@@ -23,7 +25,7 @@ export const getStaticProps = async ({ params }) => {
   return { props: { product } };
 };
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product }: { product: TProduct }) => {
   return <ProductPage product={product} />;
 };
 
